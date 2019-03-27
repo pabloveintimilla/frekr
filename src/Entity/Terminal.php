@@ -61,7 +61,7 @@ class Terminal
         return $this->name;
     }
 
-    public function getTerminal_type()
+    public function getTerminalType()
     {
         return $this->terminal_type;
     }

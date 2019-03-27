@@ -95,7 +95,7 @@ class Event
         return $this->terminal;
     }
 
-    public function getCreated_at(): \DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->created_at;
     }
@@ -105,7 +105,7 @@ class Event
         return $this->comment;
     }
 
-    public function getIs_modified()
+    public function isModified()
     {
         return $this->is_modified;
     }
@@ -150,7 +150,7 @@ class Event
         return $this;
     }
 
-    public function setCreated_at(\DateTime $created_at)
+    public function setCreatedAt(\DateTime $created_at)
     {
         $this->created_at = $created_at;
         return $this;
@@ -162,7 +162,7 @@ class Event
         return $this;
     }
 
-    public function setIs_modified($is_modified)
+    public function seModified($is_modified)
     {
         $this->is_modified = $is_modified;
         return $this;
