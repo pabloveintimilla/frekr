@@ -1,2 +1,2 @@
 # frekr
-API wraper of Frekr,me
+API wraper of Frekr.me
