@@ -114,7 +114,7 @@ class Terminal
         return $this;
     }
 
-    public function setEnabled($enabled)
+    public function setEnabled(bool $enabled)
     {
         $this->enabled = $enabled;
 
