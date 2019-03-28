@@ -3,56 +3,64 @@
 namespace PabloVeintimilla\Frekr\Entity;
 
 /**
- * Employees registered
+ * Employees registered.
  *
  * @author Pablo Veintimilla Vargas <pabloveintimilla@gmail.com>
  */
 class Employee
 {
     /**
-     * The 'id' field for the jsonapi resource, type is "Employee"
+     * The 'id' field for the jsonapi resource, type is "Employee".
+     *
      * @var string
      */
     private $id;
 
     /**
-     * Attribute, first name
+     * Attribute, first name.
+     *
      * @var string
      */
     private $firstname;
 
     /**
-     * Attribute, last name
-     * @var string 
+     * Attribute, last name.
+     *
+     * @var string
      */
     private $lastname;
 
     /**
-     * Attribute, role (ROLE_COMPANY_ADMIN/MANAGER/EMPLOYEE)
+     * Attribute, role (ROLE_COMPANY_ADMIN/MANAGER/EMPLOYEE).
+     *
      * @var string
      */
     private $role;
 
     /**
-     * Attribute, authentication method (nfc, qr_code, pin)
+     * Attribute, authentication method (nfc, qr_code, pin).
+     *
      * @var string
      */
     private $authmethod;
 
     /**
-     * Attribute, default language (not mandatory)
+     * Attribute, default language (not mandatory).
+     *
      * @var string
      */
     private $language;
 
     /**
-     * Attribute, not mandatory
+     * Attribute, not mandatory.
+     *
      * @var string
      */
     private $phone_number;
 
     /**
-     * Attribute, not mandatory
+     * Attribute, not mandatory.
+     *
      * @var string
      */
     private $email;
@@ -100,48 +108,56 @@ class Employee
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
+
         return $this;
     }
 
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
+
         return $this;
     }
 
     public function setRole($role)
     {
         $this->role = $role;
+
         return $this;
     }
 
     public function setAuthmethod($authmethod)
     {
         $this->authmethod = $authmethod;
+
         return $this;
     }
 
     public function setLanguage($language)
     {
         $this->language = $language;
+
         return $this;
     }
 
     public function setPhone_number($phone_number)
     {
         $this->phone_number = $phone_number;
+
         return $this;
     }
 
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 }

@@ -3,8 +3,6 @@ imports:
     - { resource: 'vendor/symplify/easy-coding-standard/config/symfony.yml' }
 
 services:
-    # Make sure That @param, @var, @return and @throw Types Exist
-    Symplify\CodingStandard\Sniffs\Commenting\AnnotationTypeExistsSniff: ~
     # Make @param, @return and @var Format United
     Symplify\CodingStandard\Fixer\Commenting\ParamReturnAndVarTagMalformsFixer: ~    
     # Remove // end of ... Legacy Comments
