@@ -6,7 +6,8 @@
 
 ## Introduction
 
-> This is a PHP Library data from Frekr.me api and convert to php objects.
+> This is a PHP Library to recive data from Frekr.me API and convert to php objects.
+> This reduce codification and abstract recive process
 
 ## Installation
 
@@ -16,7 +17,7 @@
 
 ### Bootstrap. 
 
-This should be include to autoload classes
+Include to autoload classes
 
 ```php
 <?php
