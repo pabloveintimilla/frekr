@@ -3,17 +3,17 @@
     "description": "API wrapper of Frekr",
     "keywords": ["php", "api", "frekr"],
     "type": "library",
-    "minimum-stability": "dev",    
+    "minimum-stability": "stable",    
     "require": {
-        "guzzlehttp/guzzle": "^6.3@dev"
+        "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
         "php": ">=7.1",
-        "symplify/easy-coding-standard": "^5.5@dev",
-        "phpunit/phpunit": "^8",
-        "paulthebaud/phpunit-generator": "2.0",
-        "symfony/var-dumper": "^4.3@dev",
-        "phpmd/phpmd": "dev-master"
+        "symplify/easy-coding-standard": "^5.4",
+        "phpunit/phpunit": "^8.0",
+        "paulthebaud/phpunit-generator": "^2.1",
+        "symfony/var-dumper": "^4.2",
+        "phpmd/phpmd": "^2.6"
     },
     "license": "GPL-3.0-or-later",
     "authors": [
@@ -33,7 +33,7 @@
         "test-win": "vendor\\bin\\phpunit.bat",
         "gentest": "./vendor/bin/phpunitgen",
         "gentest-win": "vendor\\bin\\phpunitgen.bat",
-        "phpmd": "./vendor/bin/phpmd",
+        "phpmd": "./vendor/bin/phpmd src/ text  cleancode, codesize, controversial, design, naming, unusedcode",
         "phpmd-win": "vendor\\bin\\phpmd.bat src\\ text  cleancode, codesize, controversial, design, naming, unusedcode"
     }    
 }

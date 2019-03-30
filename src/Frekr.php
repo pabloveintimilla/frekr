@@ -59,7 +59,7 @@ class Frekr
      *
      * @throws RequestException
      */
-    private function getEmployees(bool $working)
+    public function getEmployees(bool $working)
     {
         $response = $this->request('employees', ['working' => $working]);
 
