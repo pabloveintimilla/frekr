@@ -9,9 +9,10 @@
     },
     "require-dev": {
         "php": ">=7.1",
-        "symfony/var-dumper": "^4.3@dev",
         "symplify/easy-coding-standard": "^5.5@dev",
-        "phpunit/phpunit": "^8.1@dev",
+        "phpunit/phpunit": "^8",
+        "paulthebaud/phpunit-generator": "2.0",
+        "symfony/var-dumper": "^4.3@dev",
         "phpmd/phpmd": "dev-master"
     },
     "license": "GPL-3.0-or-later",
@@ -19,12 +20,17 @@
         {
             "name": "Pablo Veintimilla Vargas",
             "email": "pabloveintimilla@gmail.com"
-        }
+       }
     ],
     "autoload": {
         "psr-4": {
             "PabloVeintimilla\\Frekr\\": "src/"
         },
         "classmap": ["src"]
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit",
+        "test-win": "vendor\\bin\\phpunit.bat",
+        "gentest-win": "vendor\\bin\\phpunitgen.bat"
     }    
 }

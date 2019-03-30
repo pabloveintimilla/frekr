@@ -61,15 +61,7 @@ class Frekr
      */
     public function getEmployees(bool $working = true)
     {
-        try {
-            $response = $this->client->request('GET', 'employees',
-                [
-                'headers' => $this->headers,
-                'query' => ['working' => $working],
-            ]);
-        } catch (RequestException $ex) {
-            throw $ex;
-        }
+        $response = $this->request('employees', ['working' => $working]);
 
         $employees = [];
         $contents  = \GuzzleHttp\json_decode($response->getBody()->getContents());
@@ -88,15 +80,11 @@ class Frekr
      * @return Employee
      * @throws RequestException
      */
-    public function getEmployee($employee)
+    public function getEmployee($employee) : Employee
     {
-        $url = "employees/$employee";
-        try {
-            $response = $this->client->request('GET', $url,
-                ['headers' => $this->headers]);
-        } catch (RequestException $ex) {
-            throw $ex;
-        }
+        $url      = "employees/$employee";
+        $response = $this->request($url);
+
         $content = \GuzzleHttp\json_decode($response->getBody()->getContents());
         return $this->deserializeEmployee($content->data);
     }
@@ -113,20 +101,12 @@ class Frekr
      */
     public function getEvents(int $year = null, int $month = null)
     {
-        $query = ($year && $month) ? [
+        $query    = ($year && $month) ? [
             'year' => $year,
             'month' => $month,
             ] : [];
+        $response = $this->request('events', $query);
 
-        try {
-            $response = $this->client->request('GET', 'events',
-                [
-                'headers' => $this->headers,
-                'query' => $query,
-            ]);
-        } catch (RequestException $ex) {
-            throw $ex;
-        }
         $events   = [];
         $contents = \GuzzleHttp\json_decode($response->getBody()->getContents());
 
@@ -136,6 +116,7 @@ class Frekr
 
         return $events;
     }
+
     /**
      * GET /api/v1/events/{id} get specified event
      * 
@@ -143,14 +124,11 @@ class Frekr
      * @return Event
      * @throws RequestException
      */
-    public function getEvent($event){
-        $url = "events/$event";
-        try {
-            $response = $this->client->request('GET', $url,
-                ['headers' => $this->headers]);
-        } catch (RequestException $ex) {
-            throw $ex;
-        }
+    public function getEvent($event) : Event
+    {
+        $url      = "events/$event";
+        $response = $this->request($url);
+
         $content = \GuzzleHttp\json_decode($response->getBody()->getContents());
         return $this->deserializeEvent($content->data);
     }
@@ -174,15 +152,8 @@ class Frekr
             'month' => $month,
             ] : [];
 
-        try {
-            $response = $this->client->request('GET', $url,
-                [
-                'headers' => $this->headers,
-                'query' => $query,
-            ]);
-        } catch (RequestException $ex) {
-            throw $ex;
-        }
+        $response = $this->request($url, $query);
+
         $events   = [];
         $contents = \GuzzleHttp\json_decode($response->getBody()->getContents());
 
@@ -192,6 +163,7 @@ class Frekr
 
         return $events;
     }
+
     /**
      * GET /api/v1/terminals get terminals of athenticated company
      * 
@@ -200,12 +172,7 @@ class Frekr
      */
     public function getTerminals()
     {
-        try {
-            $response = $this->client->request('GET', 'terminals',
-                ['headers' => $this->headers]);
-        } catch (RequestException $ex) {
-            throw $ex;
-        }
+        $response = $this->request('terminals');
 
         $terminals = [];
         $contents  = \GuzzleHttp\json_decode($response->getBody()->getContents());
@@ -224,17 +191,15 @@ class Frekr
      * @return Terminal
      * @throws RequestException
      */
-    public function getTerminal($terminal){
-        $url = "terminals/$terminal";
-        try {
-            $response = $this->client->request('GET', $url,
-                ['headers' => $this->headers]);
-        } catch (RequestException $ex) {
-            throw $ex;
-        }
+    public function getTerminal($terminal) : Terminal
+    {
+        $url      = "terminals/$terminal";
+        $response = $this->request($url);
+
         $content = \GuzzleHttp\json_decode($response->getBody()->getContents());
         return $this->deserializeTerminal($content->data);
     }
+
     /**
      * GET /api/v1/terminal/{id}/events get specified terminals's events
      * in specified month (default: current month).
@@ -247,22 +212,13 @@ class Frekr
      */
     public function getEventsByTerminal($terminal, $year = null, $month = null)
     {
-        $url = "terminals/$terminal/events";
-
-        $query = ($year && $month) ? [
+        $url      = "terminals/$terminal/events";
+        $query    = ($year && $month) ? [
             'year' => $year,
             'month' => $month,
             ] : [];
+        $response = $this->request($url, $query);
 
-        try {
-            $response = $this->client->request('GET', $url,
-                [
-                'headers' => $this->headers,
-                'query' => $query,
-            ]);
-        } catch (RequestException $ex) {
-            throw $ex;
-        }
         $events   = [];
         $contents = \GuzzleHttp\json_decode($response->getBody()->getContents());
 
@@ -272,6 +228,7 @@ class Frekr
 
         return $events;
     }
+
     /**
      * Deserialize json to Event object.
      *
@@ -323,17 +280,18 @@ class Frekr
             ->setRole($data->attributes->role);
         return $employee;
     }
+
     /**
      * Deserialize json to Terminal object.
      *
      * @param \stdObject $data Json decode data.
      * @return Terminal
      */
-    private function deserializeTerminal($data){
-        $leave_reasons = $data->attributes->leave_reasons
-            ? $data->attributes->leave_reasons
-            : [];
-        $terminal = (new Terminal())
+    private function deserializeTerminal($data)
+    {
+        $leave_reasons = $data->attributes->leave_reasons ? $data->attributes->leave_reasons
+                : [];
+        $terminal      = (new Terminal())
             ->setId($data->id)
             ->setName($data->attributes->name)
             ->setTerminalType($data->attributes->terminal_type)
@@ -341,7 +299,27 @@ class Frekr
             ->setLeaveReasons($leave_reasons)
             ->setFirstLabel($data->attributes->first_label)
             ->setSecondLabel($data->attributes->second_label);
-        
+
         return $terminal;
+    }
+
+    /**
+     * Execute request to api
+     * 
+     * @param string $url
+     * @param array $query
+     * @return \GuzzleHttp\Psr7\Request
+     * @throws RequestException
+     */
+    public function request($url, $query = [])
+    {
+        try {
+            $response = $this->client->request('GET', $url,
+                ['headers' => $this->headers,
+                'query' => $query]);
+        } catch (RequestException $ex) {
+            throw $ex;
+        }
+        return $response;
     }
 }

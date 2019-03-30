@@ -1,0 +1,30 @@
+# PhpUnitGen configuration
+
+# Erase old target files with new one
+overwrite: false
+# If overwrite is enabled, set to true to backup erased files
+backup: false
+# If you want to generate tests for Interface too
+interface: false
+# If you want to generate tests skeleton for protected / private methods
+private: true
+# Automatically generate tests for getter / setter method
+auto: true
+# Ignore errors that can be ignored
+ignore: true
+# Regex (/.*config.php/ for example) that files must not match to have a tests generation
+exclude: '/^.*config\.php$/'
+# Regex (/.*.php/ for example) that files should match to have a tests generation
+include: '/^.*\.php$/'
+# Directories to generate tests for
+dirs:
+  "src": "tests"
+# Files to generate tests for
+files:
+# Phpdoc annotations to add on the unit tests class header
+phpdoc:
+  "author": "Pablo Veintimilla <pabloveintimilla@gmail.com>."
+  "copyright": "2019 John Doe <pabloveintimilla@gmail.com>."
+  "license": "https://opensource.org/licenses/GPL The GPL license."
+  "link": "https://github.com/pabloveintimilla/frekr"
+  "since": "File available since Release 1.0.0"

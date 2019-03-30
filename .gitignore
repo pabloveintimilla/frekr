@@ -1,2 +1,4 @@
 /vendor/
 /nbproject/
+.phpunit.result.cache
+index.php
