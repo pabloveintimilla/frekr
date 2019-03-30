@@ -31,6 +31,9 @@
     "scripts": {
         "test": "./vendor/bin/phpunit",
         "test-win": "vendor\\bin\\phpunit.bat",
-        "gentest-win": "vendor\\bin\\phpunitgen.bat"
+        "gentest": "./vendor/bin/phpunitgen",
+        "gentest-win": "vendor\\bin\\phpunitgen.bat",
+        "phpmd": "./vendor/bin/phpmd",
+        "phpmd-win": "vendor\\bin\\phpmd.bat src\\ text  cleancode, codesize, controversial, design, naming, unusedcode"
     }    
 }

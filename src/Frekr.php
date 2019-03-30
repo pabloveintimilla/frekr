@@ -59,7 +59,7 @@ class Frekr
      *
      * @throws RequestException
      */
-    public function getEmployees(bool $working = true)
+    private function getEmployees(bool $working)
     {
         $response = $this->request('employees', ['working' => $working]);
 
@@ -80,7 +80,7 @@ class Frekr
      * @return Employee
      * @throws RequestException
      */
-    public function getEmployee($employee) : Employee
+    public function getEmployee($employee): Employee
     {
         $url      = "employees/$employee";
         $response = $this->request($url);
@@ -124,7 +124,7 @@ class Frekr
      * @return Event
      * @throws RequestException
      */
-    public function getEvent($event) : Event
+    public function getEvent($event): Event
     {
         $url      = "events/$event";
         $response = $this->request($url);
@@ -191,7 +191,7 @@ class Frekr
      * @return Terminal
      * @throws RequestException
      */
-    public function getTerminal($terminal) : Terminal
+    public function getTerminal($terminal): Terminal
     {
         $url      = "terminals/$terminal";
         $response = $this->request($url);
