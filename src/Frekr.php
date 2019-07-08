@@ -53,13 +53,13 @@ class Frekr
     /**
      * GET /api/v1/employees get employees of authenticated company.
      *
-     * @param bool $working show only currently working employees
+     * @param bool $working show only currently working employees. Default false
      *
      * @return Employee[]
      *
      * @throws RequestException
      */
-    public function getEmployees(bool $working)
+    public function getEmployees(bool $working = false)
     {
         $response = $this->request('employees', ['working' => $working]);
 
